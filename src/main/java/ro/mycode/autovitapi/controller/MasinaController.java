@@ -1,5 +1,6 @@
 package ro.mycode.autovitapi.controller;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ro.mycode.autovitapi.model.Masina;
@@ -8,6 +9,7 @@ import ro.mycode.autovitapi.repository.MasinaRepo;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class MasinaController {
 
 
