@@ -11,16 +11,16 @@ import java.util.List;
 @RestController
 @CrossOrigin
 public class MasinaController {
-
-
     private MasinaRepo masinaRepo;
 
     public MasinaController(MasinaRepo masinaRepo) {
         this.masinaRepo = masinaRepo;
     }
 
-    @GetMapping("/api/v1/masini")
+    @GetMapping("api/v1/masini")
     public List<Masina>getAllCars(){
+        System.out.println("aici");
+
         return masinaRepo.findAll();
     }
     //endpont care aduce marcile
@@ -29,4 +29,10 @@ public class MasinaController {
     public List<String>getAllMarci(){
         return masinaRepo.getAllMarci();
     }
+
+
+
+
+
+
 }

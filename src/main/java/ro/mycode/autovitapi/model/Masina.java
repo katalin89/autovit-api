@@ -53,8 +53,6 @@ public class Masina  implements Comparable<Masina>{
 
         }
         return -1;
-
-
    }
 
 }
