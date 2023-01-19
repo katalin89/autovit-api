@@ -1,8 +1,7 @@
 package ro.mycode.autovitapi.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ro.mycode.autovitapi.model.Masina;
 import ro.mycode.autovitapi.repository.MasinaRepo;
 
@@ -18,7 +17,7 @@ public class MasinaController {
     }
 
     @GetMapping("api/v1/masini")
-    public List<Masina>getAllCars(){
+    public List<Masina> getAllCars() {
         System.out.println("aici");
 
         return masinaRepo.findAll();
@@ -26,13 +25,30 @@ public class MasinaController {
     //endpont care aduce marcile
 
     @GetMapping("api/v1/masini/marci")
-    public List<String>getAllMarci(){
+    public List<String> getAllMarci() {
         return masinaRepo.getAllMarci();
     }
 
 
+    //enpoint care sa returneze toate obiectele care au marca respectiva,primeste ca parametru marca
 
 
+    //cad apasam pe toyota sa apara numai randul toyota
+    @GetMapping("api/v1/masini/{marca}")
+    public List<Masina> getAllMasiniByMarca(@PathVariable String marca) {//daca vom alege alt marca punem @PathVariable
+        return masinaRepo.getAllMasinaByMarca(marca);
+    }
+
+    @PostMapping("api/v1/add")// asa vom face add in baza de date
+    public  Masina  addCar(@RequestBody Masina masina){
+
+        this.masinaRepo.save(masina);
+
+
+        return  masina;
+    }
 
 
 }
+
+

@@ -8,6 +8,11 @@ import org.springframework.context.annotation.Bean;
 import ro.mycode.autovitapi.model.Masina;
 import ro.mycode.autovitapi.repository.MasinaRepo;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @SpringBootApplication
 public class AutovitApiApplication {
 
@@ -17,9 +22,8 @@ public class AutovitApiApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(MasinaRepo masinaRepo){
-			return args -> {
-
+	CommandLineRunner commandLineRunner(MasinaRepo masinaRepo) {
+		return args -> {
 
 
 //				for(int i=0;i<100;i++){
@@ -32,7 +36,14 @@ public class AutovitApiApplication {
 //					System.out.println(e);
 //				});
 
-			};
-	}
+//-----------------
+//			List<Masina> listMasini = masinaRepo.getAllMasinaByMarca("Toyota");
+//			Iterator iterator = listMasini.iterator();
+//			while (iterator.hasNext()) {
+//				System.out.println(iterator.next());
+//			}
 
+		};
+
+	}
 }
