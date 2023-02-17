@@ -92,7 +92,17 @@ public class MasinaController {
         return  masinaRepo.findById(Long.valueOf(id)).get();
     }
 
+    @GetMapping("api/v1/sortByPrice")
+    public List<Masina> sortByPrice(){
+        return  masinaRepo.sortByPrice();
+
+    }
+
 }
+
+//sort by price
+
+
 
 
 
