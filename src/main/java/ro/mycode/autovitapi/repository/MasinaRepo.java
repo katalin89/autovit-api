@@ -34,8 +34,16 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
     void deleteById(int id);
 
 
-
+//la find merge si fara query,scriem findBy si se completeaza singur
     Masina findByModel(String model);
+
+
+
+    @Transactional
+    @Modifying
+    //ordoneaza in ordine crescatoare
+    @Query("select distinct m from Masina m order by m.pret")
+    List<Masina> sortByPrice();
 
 
 
