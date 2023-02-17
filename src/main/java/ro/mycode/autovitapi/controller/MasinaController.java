@@ -2,6 +2,7 @@ package ro.mycode.autovitapi.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.mycode.autovitapi.dtos.MasinaDTO;
 import ro.mycode.autovitapi.model.Masina;
 import ro.mycode.autovitapi.repository.MasinaRepo;
 
@@ -40,15 +41,60 @@ public class MasinaController {
     }
 
     @PostMapping("api/v1/add")// asa vom face add in baza de date
-    public  Masina  addCar(@RequestBody Masina masina){
+    public Masina addCar(@RequestBody Masina masina) {
 
         this.masinaRepo.save(masina);
 
 
-        return  masina;
+        return masina;
     }
 
+    @DeleteMapping("api/v1/deleteByMarca/{marca}")
+    public String deleteCar(@PathVariable String marca) {
+
+        this.masinaRepo.deleteMasinaByMarca(marca);
+
+        return marca;
+    }
+
+    @DeleteMapping("api/v1/delete/{id}")
+    public long deleteCarById(@PathVariable long id) {
+        this.masinaRepo.deleteById(id);
+        return id;
+    }
+
+    @PutMapping("api/v1/update")// asa vom face add in baza de date
+    public Masina updateCar(@RequestBody MasinaDTO masina) {
+        Masina m = masinaRepo.findByModel(masina.getModel());
+
+        if (masina.getPret() != 0) {
+            m.setPret(masina.getPret());
+        }else System.out.println("Nu are valoare");
+        if (masina.getCuloare().equals("") == false) {
+            m.setCuloare(masina.getCuloare());
+        }else System.out.println("Nu are valoare");
+        System.out.println("nrdelocuri:" + masina.getNrDeLocuri());
+        if (masina.getNrDeLocuri() != 0) {
+            m.setNrDeLocuri(masina.getNrDeLocuri());
+        }else System.out.println("Nu are valoare");
+        if (masina.getMarca().equals("") == false) {
+
+            m.setMarca(masina.getMarca());
+        }else System.out.println("Nu are valoare");
+        masinaRepo.save(m);
+        return m;
+    }
+
+    //find car by id
+
+    @GetMapping("api/v1/get/car/{id}")
+    public Masina getCarById(@PathVariable int id){
+        return  masinaRepo.findById(Long.valueOf(id)).get();
+    }
 
 }
+
+
+
 
 
