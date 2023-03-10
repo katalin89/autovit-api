@@ -6,6 +6,8 @@ import ro.mycode.autovitapi.dtos.MasinaDTO;
 import ro.mycode.autovitapi.model.Masina;
 import ro.mycode.autovitapi.repository.MasinaRepo;
 
+import javax.validation.Valid;
+import java.security.PublicKey;
 import java.util.List;
 
 @RestController
@@ -19,6 +21,7 @@ public class MasinaController {
 
     @GetMapping("api/v1/masini")
     public List<Masina> getAllCars() {
+
         System.out.println("aici");
 
         return masinaRepo.findAll();
@@ -41,7 +44,7 @@ public class MasinaController {
     }
 
     @PostMapping("api/v1/add")// asa vom face add in baza de date
-    public Masina addCar(@RequestBody Masina masina) {
+    public Masina addCar(@Valid @RequestBody Masina masina) {
 
         this.masinaRepo.save(masina);
 
@@ -89,6 +92,7 @@ public class MasinaController {
 
     @GetMapping("api/v1/get/car/{id}")
     public Masina getCarById(@PathVariable int id){
+
         return  masinaRepo.findById(Long.valueOf(id)).get();
     }
 
@@ -98,6 +102,27 @@ public class MasinaController {
 
     }
 
+    @GetMapping("api/v1/sortByColor")
+    public List<Masina>sortByColor(){
+        return masinaRepo.sortByColor();
+    }
+
+    @GetMapping("api/v1/sortByMarca")
+    public  List<Masina>sortByMarca(){
+        return  masinaRepo.sortByMarca();
+    }
+
+
+    @GetMapping("api/v1/sortByModel")
+    public List<Masina>sortByModel(){
+        return  masinaRepo.sortByModel();
+
+    }
+
+    @GetMapping("api/v1/sortByNrDeLocuri")
+    public List<Masina>sortByNrDeLocuri(){
+        return  masinaRepo.sortByModel();
+    }
 }
 
 //sort by price

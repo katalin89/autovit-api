@@ -45,11 +45,31 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
     @Query("select distinct m from Masina m order by m.pret")
     List<Masina> sortByPrice();
 
+    @Transactional
+    @Modifying
+    @Query("select distinct m from Masina m order by m.culoare")
+    List<Masina>sortByColor();
 
+    @Transactional
+    @Modifying
+    @Query("select distinct m from Masina m order by m.marca")
+    List<Masina>sortByMarca();
+//ordoneaza in ordine crescatoare
+
+
+    @Transactional
+    @Modifying
+    @Query("select distinct m from Masina m order by  m.model")
+    List<Masina>sortByModel();
+
+    @Transactional
+    @Modifying
+    @Query("select  distinct m from Masina m order by m.nrDeLocuri")
+    List<Masina>sortByNrDeLocuri();
 
 }
 
 
-//ordoneaza in ordine crescatoare
+
 
 
