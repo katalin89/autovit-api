@@ -21,7 +21,7 @@ public class Masina implements Comparable<Masina> {
 
     @Id
     @SequenceGenerator(name = "masina_sequence", sequenceName = "masina_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "masina_sequence")
 
     private Long id;
 
@@ -66,51 +66,3 @@ public class Masina implements Comparable<Masina> {
 
 }
 
-/*
-public class Masina  implements Comparable<Masina>{
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private long id;
-    private String marca;
-
-    private String model;
-    private int nrDeLocuri;
-    private int pret;
-    private String culoare;
-
-    public Masina(String marca, int nrDeLocuri, int pret, String culoare) {
-        this.marca = marca;
-        this.nrDeLocuri = nrDeLocuri;
-        this.pret = pret;
-        this.culoare = culoare;
-    }
-
-    @Override
-    public String toString(){
-        String text="";
-        text+=marca+","+nrDeLocuri+","+pret+","+culoare;
-        return  text;
-    }
-
-    @Override
-    public int compareTo(Masina o) {
-        return 0;
-    }
-
-   public int compare(Object o){
-        Masina masina=(Masina)o;
-
-        if(this.pret> masina.pret){
-            return  1;
-        }else if(this.pret<masina.pret){
-            return  0;
-
-        }
-        return -1;
-   }
-
-}
-
-
- */

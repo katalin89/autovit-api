@@ -67,7 +67,7 @@ public class MasinaController {
     }
 
     @PutMapping("api/v1/update")// asa vom face add in baza de date
-    public Masina updateCar(@RequestBody MasinaDTO masina) {
+    public Masina updateCar(@Valid @RequestBody MasinaDTO masina) {
         Masina m = masinaRepo.findByModel(masina.getModel());
 
         if (masina.getPret() != 0) {
