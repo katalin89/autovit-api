@@ -25,11 +25,10 @@ public class AutovitApiApplication {
 	CommandLineRunner commandLineRunner(MasinaRepo masinaRepo) {
 		return args -> {
 
+
 			//masinaRepo.deleteMasinaByMarca("Dodge");
 
-			masinaRepo.getAllMarci().forEach((e)->{
-				System.out.println(e);
-			});
+
 
 
 //				for(int i=0;i<100;i++){

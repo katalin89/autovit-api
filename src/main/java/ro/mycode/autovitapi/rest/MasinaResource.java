@@ -1,0 +1,45 @@
+package ro.mycode.autovitapi.rest;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import ro.mycode.autovitapi.dtos.MasinaDTO;
+import ro.mycode.autovitapi.model.Masina;
+import ro.mycode.autovitapi.service.MasinaService;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/masina")
+public class MasinaResource {
+
+    private MasinaService masinaService;
+
+    public MasinaResource(MasinaService masinaService) {
+        this.masinaService = masinaService;
+    }
+
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Masina>> getAllCars() {
+        List<Masina> allMasini = masinaService.getAllMasini();
+        return new ResponseEntity<>(allMasini, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deleteByModel/{model}")
+    ResponseEntity deleteByModel(@PathVariable String model){
+        this.masinaService.deleteMasinaByModel(model);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
+    }
+
+    @PutMapping("/update")
+     public ResponseEntity update(@Valid @RequestBody MasinaDTO masina, String model){
+        this.masinaService.update(masina,model);
+        return  new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+
+
+}

@@ -30,12 +30,17 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
 
     @Transactional
     @Modifying
+    @Query("delete from  Masina m where m.model like ?1")
+    void deleteMasinaByModel(String model);
+
+    @Transactional
+    @Modifying
     @Query("delete from Masina  m where m.id = ?1")//la string in loc de egal este like
     void deleteById(int id);
 
 
 //la find merge si fara query,scriem findBy si se completeaza singur
-    Masina findByModel(String model);
+    Masina findMasinaByModel(String model);
 
 
 
