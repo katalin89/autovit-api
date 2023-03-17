@@ -21,8 +21,7 @@ public class Masina implements Comparable<Masina> {
 
     @Id
     @SequenceGenerator(name = "masina_sequence", sequenceName = "masina_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "masina_sequence")
     private Long id;
 
     @Column(name="marca",nullable = false)

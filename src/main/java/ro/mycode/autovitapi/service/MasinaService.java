@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import ro.mycode.autovitapi.dtos.MasinaDTO;
+import ro.mycode.autovitapi.exceptii.ExceptieExistingCar;
 import ro.mycode.autovitapi.exceptii.ExceptieMasinaDBEmpty;
 import ro.mycode.autovitapi.exceptii.MasinaNotFoundException;
 import ro.mycode.autovitapi.model.Masina;
@@ -38,12 +39,21 @@ public class MasinaService {
             throw new MasinaNotFoundException();
         }
 
-
     }
 
     @Transactional
+    @Modifying
     public  void addCar(Masina masina) throws MasinaNotFoundException{
-        
+
+        List<Masina> carWith = masinaRepo.findCarWith(masina.getMarca(), masina.getModel());
+
+
+        if(carWith.size()>0){
+
+            throw  new ExceptieExistingCar();
+        }
+
+        this.masinaRepo.saveAndFlush(masina);
     }
 
     @Transactional
@@ -73,15 +83,7 @@ public class MasinaService {
 
 
     }
-    /**/
 
-//    public Optional<Masina> getMasinaByModel(String model) throws ExceptieMasinaNeexistent {
-//        Optional<Masina> masina = masinaRepo.findByModel(model);
-//        if (masina.isPresent()) {
-//            return masina;
-//        }
-//        throw new ExceptieMasinaNeexistent();
-//    }
 
 
 }

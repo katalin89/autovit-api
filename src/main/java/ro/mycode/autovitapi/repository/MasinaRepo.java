@@ -10,6 +10,7 @@ import ro.mycode.autovitapi.model.Masina;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MasinaRepo extends JpaRepository<Masina, Long> {
@@ -72,7 +73,23 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
     @Query("select  distinct m from Masina m order by m.nrDeLocuri")
     List<Masina>sortByNrDeLocuri();
 
+    ///metoda  daca este unic  dupa marca si model
+    @Transactional
+    @Modifying
+    @Query("select  m from Masina m where m.marca = ?1 and m.model = ?2 ")
+    List<Masina> findCarWith(String marca ,String model);
+
+
+
+
+    //select * from masini where marca like '%Nissan%'  and model like '%Frontier%';
+
+
+
 }
+
+
+
 
 
 

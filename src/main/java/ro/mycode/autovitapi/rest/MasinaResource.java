@@ -34,6 +34,13 @@ public class MasinaResource {
 
     }
 
+    @PostMapping("/add")
+    public ResponseEntity addCar( @RequestBody Masina masina){
+        masinaService.addCar(masina);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+
     @PutMapping("/update")
      public ResponseEntity update(@Valid @RequestBody MasinaDTO masina, String model){
         this.masinaService.update(masina,model);
