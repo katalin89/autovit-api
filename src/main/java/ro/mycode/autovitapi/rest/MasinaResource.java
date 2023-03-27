@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/masina")
+@CrossOrigin
 public class MasinaResource {
 
     private MasinaService masinaService;
@@ -34,6 +35,13 @@ public class MasinaResource {
 
     }
 
+    @DeleteMapping("/delete/{id}")
+    ResponseEntity deleteById(@PathVariable Long id){
+        this.masinaService.deleteMasinaById(id);
+        return  new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+
     @PostMapping("/add")
     public ResponseEntity addCar( @RequestBody Masina masina){
         masinaService.addCar(masina);
@@ -46,7 +54,4 @@ public class MasinaResource {
         this.masinaService.update(masina,model);
         return  new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-
-
-
 }

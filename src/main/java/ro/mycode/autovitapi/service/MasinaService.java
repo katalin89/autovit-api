@@ -40,6 +40,17 @@ public class MasinaService {
         }
 
     }
+    public  void  deleteMasinaById(Long id) throws MasinaNotFoundException {
+        Masina byId=masinaRepo.findMasinaById( id);
+
+        if(byId!=null){
+            masinaRepo.deleteById(id);
+        }else {
+            throw new MasinaNotFoundException();
+        }
+    }
+
+
 
     @Transactional
     @Modifying
@@ -75,6 +86,7 @@ public class MasinaService {
         }
 
         if (masina.getNrDeLocuri() != 0) {
+
             m.setNrDeLocuri(masina.getNrDeLocuri());
         }
         if (masina.getPret() != 0) {

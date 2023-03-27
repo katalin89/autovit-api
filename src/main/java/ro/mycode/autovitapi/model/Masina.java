@@ -25,7 +25,7 @@ public class Masina implements Comparable<Masina> {
     private Long id;
 
     @Column(name="marca",nullable = false)
-    @Size(min=4,message="Marca trebuie sa fie minim 4 caractere")
+    @Size(min=2,message="Marca trebuie sa fie minim 2 caractere")
     private String marca;
 
     @Column(name="model",nullable = false)
@@ -38,11 +38,11 @@ public class Masina implements Comparable<Masina> {
 
 
     @Column(name="pret",nullable = false)
-    @Max(value = 100000,message="Pretul nu poate fi peste 100 000 euro")
+    @Max(value = 10000000,message="Pretul nu poate fi peste 10 000 000 euro")
     private int pret;
 
     @Column(name="culoare",nullable = false)
-    @Size(min=4,message="Culoare trebuie sa fie minim 4 caractere")
+    @Size(min=2,message="Culoare trebuie sa fie minim 2 caractere")
     private  String culoare;
 
     @Override

@@ -4,13 +4,11 @@ package ro.mycode.autovitapi.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ro.mycode.autovitapi.model.Masina;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface MasinaRepo extends JpaRepository<Masina, Long> {
@@ -37,11 +35,13 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
     @Transactional
     @Modifying
     @Query("delete from Masina  m where m.id = ?1")//la string in loc de egal este like
-    void deleteById(int id);
+    void deleteById(Long id);
 
 
 //la find merge si fara query,scriem findBy si se completeaza singur
     Masina findMasinaByModel(String model);
+
+    Masina findMasinaById(Long id);
 
 
 
@@ -78,6 +78,11 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
     @Modifying
     @Query("select  m from Masina m where m.marca = ?1 and m.model = ?2 ")
     List<Masina> findCarWith(String marca ,String model);
+
+    @Transactional
+    @Modifying
+    @Query("select  m from Masina m where m.id = ?1")
+    List<Masina> findById(int id);
 
 
 
