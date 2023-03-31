@@ -34,34 +34,34 @@ public class MasinaService {
     public void deleteMasinaByModel(String model) throws MasinaNotFoundException {
         Masina byModel = masinaRepo.findMasinaByModel(model);
         if (byModel != null) {
-            masinaRepo.deleteMasinaByModel(model);
+            masinaRepo.deleteCarByModel(model);
         } else {
             throw new MasinaNotFoundException();
         }
 
     }
-    public  void  deleteMasinaById(Long id) throws MasinaNotFoundException {
-        Masina byId=masinaRepo.findMasinaById( id);
 
-        if(byId!=null){
+    public void deleteById(Long id) throws MasinaNotFoundException {
+        Masina byId = masinaRepo.findMasinaById(id);
+
+        if (byId != null) {
             masinaRepo.deleteById(id);
-        }else {
+        } else {
             throw new MasinaNotFoundException();
         }
     }
 
 
-
     @Transactional
     @Modifying
-    public  void addCar(Masina masina) throws MasinaNotFoundException{
+    public void addCar(Masina masina) throws MasinaNotFoundException {
 
         List<Masina> carWith = masinaRepo.findCarWith(masina.getMarca(), masina.getModel());
 
 
-        if(carWith.size()>0){
+        if (carWith.size() > 0) {
 
-            throw  new ExceptieExistingCar();
+            throw new ExceptieExistingCar();
         }
 
         this.masinaRepo.saveAndFlush(masina);
@@ -70,7 +70,7 @@ public class MasinaService {
     @Transactional
     @Modifying
     //public void update (@RequestBody MasinaDTO masina)throws MasinaNotFoundException{
-    public void update(@RequestBody MasinaDTO masina,String model) throws MasinaNotFoundException {
+    public void update(@RequestBody MasinaDTO masina, String model) throws MasinaNotFoundException {
         Masina m = masinaRepo.findMasinaByModel(masina.getModel());
 
 
@@ -96,6 +96,25 @@ public class MasinaService {
 
     }
 
+    public List<Masina>sortByColor(){
+        return masinaRepo.sortByColor();
+    }
+
+    public List<Masina> sortByMarca() {
+        return masinaRepo.sortByMarca();
+    }
+
+    public List<Masina>sortByModel(){
+        return masinaRepo.sortByModel();
+    }
+
+    public List<Masina> sortByPrice(){
+        return masinaRepo.sortByPrice();
+    }
+
+    public List<Masina>sortByNrDeLoc(){
+        return masinaRepo.sortByNrDeLoc();
+    }
 
 
 }

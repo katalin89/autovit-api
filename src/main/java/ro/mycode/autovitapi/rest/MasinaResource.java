@@ -37,7 +37,8 @@ public class MasinaResource {
 
     @DeleteMapping("/delete/{id}")
     ResponseEntity deleteById(@PathVariable Long id){
-        this.masinaService.deleteMasinaById(id);
+        this.masinaService.deleteById(id);
+        //return id;
         return  new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
@@ -54,4 +55,30 @@ public class MasinaResource {
         this.masinaService.update(masina,model);
         return  new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/sortByColor")
+    public List<Masina>sortByColor(){
+        return masinaService.sortByColor();
+    }
+    @GetMapping("/sortByMarca")
+
+    public List<Masina>sortByMarca(){
+        return masinaService.sortByMarca();
+    }
+
+    @GetMapping("/sortByModel")
+    public List<Masina>sortByModel(){
+        return  masinaService.sortByModel();
+    }
+
+    @GetMapping("/sortByNrDeLoc")
+    public List<Masina>sortByNrDeLoc(){
+        return  masinaService.sortByNrDeLoc();
+    }
+
+    @GetMapping("/sortByPrice")
+    public List<Masina>sortByPrice(){
+        return masinaService.sortByPrice();
+    }
+
 }

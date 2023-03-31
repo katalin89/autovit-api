@@ -20,17 +20,17 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
     @Query("select m  from  Masina m where  m.marca = ?1")
 //?1 este primul parametru de la List<masina>,daca ar avea 2 parametri am putea scrie si doi
 
-    List<Masina> getAllMasinaByMarca(String marca);
+    List<Masina> getAllCarByMarca(String marca);
 
     @Transactional
     @Modifying
     @Query("delete from  Masina m where m.marca like ?1")
-    void deleteMasinaByMarca(String marca);
+    void deleteCarByMarca(String marca);
 
     @Transactional
     @Modifying
     @Query("delete from  Masina m where m.model like ?1")
-    void deleteMasinaByModel(String model);
+    void deleteCarByModel(String model);
 
     @Transactional
     @Modifying
@@ -71,7 +71,7 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
     @Transactional
     @Modifying
     @Query("select  distinct m from Masina m order by m.nrDeLocuri")
-    List<Masina>sortByNrDeLocuri();
+    List<Masina>sortByNrDeLoc();
 
     ///metoda  daca este unic  dupa marca si model
     @Transactional
@@ -79,15 +79,6 @@ public interface MasinaRepo extends JpaRepository<Masina, Long> {
     @Query("select  m from Masina m where m.marca = ?1 and m.model = ?2 ")
     List<Masina> findCarWith(String marca ,String model);
 
-    @Transactional
-    @Modifying
-    @Query("select  m from Masina m where m.id = ?1")
-    List<Masina> findById(int id);
-
-
-
-
-    //select * from masini where marca like '%Nissan%'  and model like '%Frontier%';
 
 
 
