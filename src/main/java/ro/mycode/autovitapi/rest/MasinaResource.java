@@ -18,6 +18,7 @@ public class MasinaResource {
     private MasinaService masinaService;
 
     public MasinaResource(MasinaService masinaService) {
+
         this.masinaService = masinaService;
     }
 
